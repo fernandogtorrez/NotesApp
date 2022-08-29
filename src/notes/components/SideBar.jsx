@@ -28,7 +28,7 @@ export const SideBar = ({drawerWidth= 240}) => {
             <Divider />
             <List>
                 {
-                    ['Enero', 'Febrero', 'Marzo', 'Abril'].map(text =>(
+                    ['Enero', 'Febrero', 'Marzo', 'Abril'].map((text) =>(
                         <ListItem key={text}>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -38,8 +38,8 @@ export const SideBar = ({drawerWidth= 240}) => {
                                     container
                                 >
                                     <ListItemText primary={text}/>
-                                    <ListItemText secundary={
-                                         'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores minima accusantium dolore nobis consectetur dolorum placeat vel impedit voluptas, similique eos ipsum suscipit libero aliquam, molestias quos laborum minus recusandae.'
+                                    <ListItemText secondary={
+                                         'Lorem ipsum dolor, sit amet consectetur adipisicing elit.'
                                     }/>
                                 </Grid>
                             </ListItemButton>

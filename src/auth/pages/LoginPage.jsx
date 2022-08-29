@@ -4,12 +4,34 @@ import { AuthLayout } from '../layout/AuthLayout'
 
 import { Button, Grid, TextField, Typography, Link } from "@mui/material"
 import { Google } from '@mui/icons-material'
+import { useForm } from '../../hooks'
+import { useDispatch } from 'react-redux'
+import { checkingAuthentication } from '../../store/auth/thunks'
 
 
 export const LoginPage = () => {
+
+  const dispatch = useDispatch()
+
+  const {email, password, onInputChange} = useForm({
+    email: 'fernandogtorrez@gmail.com',
+    password: '123456'
+  })
+
+  const onSubmit = (event) =>{
+    event.preventDefault()
+    console.log({email, password})
+    dispatch(checkingAuthentication())
+  }
+
+  const onGoogleSignIn = () => {
+    console.log('onGoogleSignIn')
+    dispatch(checkingAuthentication())
+  }
+
   return (
     <AuthLayout title='Login'>
-        <form>
+        <form onSubmit={onSubmit}>
           <Grid
             item
             xs={12}
@@ -20,6 +42,9 @@ export const LoginPage = () => {
               type='email'
               placeholder="correo@gmail.com"
               fullWidth
+              name='email'
+              value={email}
+              onChange={onInputChange}
             />
           </Grid>
           <Grid
@@ -32,6 +57,9 @@ export const LoginPage = () => {
               type='password'
               placeholder="Contraseña"
               fullWidth
+              name='password'
+              value={password}
+              onChange={onInputChange}
             />
           </Grid>
           <Grid
@@ -47,6 +75,7 @@ export const LoginPage = () => {
               <Button
                 variant="contained"
                 fullWidth
+                type='submit'
               >
                 <Typography sx={{ml: 1}}>Login</Typography>
               </Button>
@@ -59,6 +88,7 @@ export const LoginPage = () => {
               <Button
                 variant="contained"
                 fullWidth
+                onClick={onGoogleSignIn}
               >
                 <Google/>
                 <Typography sx={{ml: 1}}>Google</Typography>
