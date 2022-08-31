@@ -5,13 +5,18 @@ import { AuthLayout } from '../layout/AuthLayout'
 import { Button, Grid, TextField, Typography, Link } from "@mui/material"
 import { Google } from '@mui/icons-material'
 import { useForm } from '../../hooks'
-import { useDispatch } from 'react-redux'
-import { checkingAuthentication } from '../../store/auth/thunks'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkingAuthentication, startGoogleSignIn } from '../../store/auth/thunks'
+import { useMemo } from 'react'
 
 
 export const LoginPage = () => {
 
   const dispatch = useDispatch()
+
+  const { status } = useSelector((state)=> state.auth)
+
+  const isChecking = useMemo(()=> status === 'checking',[status])
 
   const {email, password, onInputChange} = useForm({
     email: 'fernandogtorrez@gmail.com',
@@ -26,7 +31,7 @@ export const LoginPage = () => {
 
   const onGoogleSignIn = () => {
     console.log('onGoogleSignIn')
-    dispatch(checkingAuthentication())
+    dispatch(startGoogleSignIn())
   }
 
   return (
@@ -76,6 +81,7 @@ export const LoginPage = () => {
                 variant="contained"
                 fullWidth
                 type='submit'
+                disabled={isChecking}
               >
                 <Typography sx={{ml: 1}}>Login</Typography>
               </Button>
@@ -89,6 +95,7 @@ export const LoginPage = () => {
                 variant="contained"
                 fullWidth
                 onClick={onGoogleSignIn}
+                disabled={isChecking}
               >
                 <Google/>
                 <Typography sx={{ml: 1}}>Google</Typography>
