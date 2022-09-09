@@ -11,6 +11,7 @@ export const NoteView = () => {
         justifyContent='space-between'
         alignItems='center'
         sx={{ mb:1 }}
+        className='animate__animate animate__animate__fadeIn'
     >
         <Grid item>
             <Typography fontSize={39} fontWeight='light'>

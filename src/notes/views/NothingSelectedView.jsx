@@ -12,6 +12,7 @@ export const NothingSelectedView = () => {
         alignItems='center'
         justifyContent='center'
         sx={{minHeight:'calc(100vh - 110px)', backgroundColor: 'primary.main', borderRadius:3}}
+        className='animate__animate animate__animate__fadeIn'
     >
         <Grid
             item

@@ -1,10 +1,18 @@
 import { AddOutlined } from "@mui/icons-material"
 import { IconButton } from "@mui/material"
+import { useDispatch } from "react-redux"
+import { startNewNote } from "../../store/notes/thunks"
 import { NotesLayout } from "../layout/NotesLayout"
 import { NoteView } from "../views"
 import { NothingSelectedView } from "../views/NothingSelectedView"
 
 export const NotesPage = () => {
+
+  const dispatch = useDispatch()
+  const onClickNewNote = () => {
+    dispatch(startNewNote())
+  }
+
   return (
     <NotesLayout>
       <NothingSelectedView/>
@@ -20,6 +28,7 @@ export const NotesPage = () => {
           right: 50,
           bottom: 50
         }}
+        onClick={onClickNewNote}
       >
         <AddOutlined sx={{fontSize: 30}}/>
       </IconButton>
