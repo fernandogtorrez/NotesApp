@@ -1,12 +1,13 @@
 import { SaveOutlined } from '@mui/icons-material'
 import { Button, Grid, TextField, Typography } from '@mui/material'
-import { useEffect } from 'react'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import { setActiveNote } from '../../store/notes/notesSlice'
 import { ImageGalery } from '../components'
 import { startSaveNote } from '../../store/notes/thunks'
+import Swal from 'sweetalert2'
+import { UploadImagesButton } from '../components/UploadImagesButton'
 
 const formValid = {
     title: [
@@ -21,7 +22,7 @@ export const NoteView = () => {
 
     const dispatch = useDispatch()
 
-    const { activeNote } = useSelector(state => state.note)
+    const { activeNote, isSaving, messageSaved } = useSelector(state => state.note)
 
     const { body,title, onInputChange, formState, date, titleValid, bodyValid, isFormValid } = useForm( activeNote, formValid )
 
@@ -33,6 +34,12 @@ export const NoteView = () => {
         const newDate = new Date( date )
         return newDate.toUTCString()
     },[date])
+
+    useEffect(() => {
+        if(messageSaved.length > 0){
+            Swal.fire('Nota actualizada', messageSaved, 'success')
+        }
+    }, [messageSaved]);
 
     const onSaveNote = () => {
         dispatch(startSaveNote())
@@ -53,8 +60,10 @@ export const NoteView = () => {
             </Typography>
         </Grid>
         <Grid item>
+            <UploadImagesButton/>
             <Button sx={{padding: 2}}
                 onClick={onSaveNote}
+                disabled={isSaving}
             >
                 <SaveOutlined sx={{fontSize: 30, mr: 1}} />
                 Guardar
@@ -88,7 +97,7 @@ export const NoteView = () => {
             />
         </Grid>
         {/* Galeria de imagenes */}
-        <ImageGalery/>
+        <ImageGalery images={activeNote.imagesUrls} />
     </Grid>
   )
 }
