@@ -7,14 +7,6 @@ const initialState = {
     activeNote: null,
 }
 
-/* {
-    id:'ABC123',
-    title: '',
-    body: '',
-    date: 123456,
-    imageUrl: [],
-}
- */
 export const noteSlice = createSlice({
     name: 'note',
     initialState,
@@ -26,18 +18,26 @@ export const noteSlice = createSlice({
         setActiveNote: (state, {payload}) => {
             state.activeNote = payload
         },
-        setNote: (state) => {},
+        setNote: (state,{payload}) => {
+            state.notes = payload
+        },
         startSaving: (state) => {
             state.isSaving = true
         },
-        updateNote: (state) => {},
+        updateNote: (state, {payload}) => {
+            state.notes = state.notes.map(note => {
+                if(note.id === payload.id) return payload
+                return note
+            })
+            state.isSaving = false
+        },
         deleteNoteById: (state) => {},
     }
 })
 
 export const {
     addNewEmptyNote,
-    setactiveNote,
+    setActiveNote,
     setNote,
     startSaving,
     updateNote,
