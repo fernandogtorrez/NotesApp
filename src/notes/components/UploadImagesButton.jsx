@@ -13,7 +13,7 @@ export const UploadImagesButton = () => {
 
     const onFileInputChange = ({target}) => {
         if(target.files === 0) return
-        console.log(target.files)
+
         dispatch(startUploadingFiles(target.files))
     }
 

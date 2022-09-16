@@ -37,7 +37,6 @@ export const startLoadingNotes = () => {
 
        const notes = docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
-       console.log(notes)
        dispatch(setNote(notes))
     }
 }
@@ -71,8 +70,6 @@ export const startUploadingFiles = (files = []) => {
         }
 
         const photosUrls = await Promise.all(fileUploadPromises)
-
-        console.log(photosUrls)
 
         dispatch(setPhotosToActiveNote(photosUrls))
     }
