@@ -2,14 +2,24 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore/lite'
 import { getStorage } from 'firebase/storage'
+import { getEnvironment } from "../notes/helpers/getEnvironment";
+
+const {
+  VITE_APIKEY,
+  VITE_AUTHDOMAIN,
+  VITE_PROJECTID, 
+  VITE_STORAGEBUCKET,
+  VITE_MESSAGINGSENDERID,
+  VITE_APPID,
+} = getEnvironment()
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDNXNaL22Qan9j2vlqdtyTWiuLc1S_olLw",
-  authDomain: "noteapp-torrez.firebaseapp.com",
-  projectId: "noteapp-torrez",
-  storageBucket: "noteapp-torrez.appspot.com",
-  messagingSenderId: "835590244800",
-  appId: "1:835590244800:web:d15851b0e7ebe52c5c6025"
+  apiKey: VITE_APIKEY,
+  authDomain: VITE_AUTHDOMAIN,
+  projectId: VITE_PROJECTID,
+  storageBucket: VITE_STORAGEBUCKET,
+  messagingSenderId: VITE_MESSAGINGSENDERID,
+  appId: VITE_APPID
 };
 
 // Initialize Firebase

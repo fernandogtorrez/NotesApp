@@ -1,33 +1,43 @@
+import { ArrowBack } from "@mui/icons-material"
 import { 
     Box,
     Divider,
     Drawer,
+    IconButton,
     List,
     Toolbar,
     Typography
 } from "@mui/material"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { onCloseDrawer } from "../../store/ui/uiSlice"
 import { SideBarItem } from "./SideBarItem"
 
 
-export const SideBar = ({drawerWidth= 240}) => {
+export const SideBar = () => {
 
-    const { displayName } = useSelector(state => state.auth)
-    const { notes } = useSelector(state => state.note)
+    const dispatch = useDispatch()
+
+    const { auth, note, ui } = useSelector(state => state)
+    //const { displayName } = useSelector(state => state.auth)
+    //const { notes } = useSelector(state => state.note)
+
+    const { displayName } = auth
+    const { notes } = note
+    const { drawer } = ui
 
 
 
   return (
     <Box
         component='nav'
-        sx={{ width: {sm: drawerWidth}, flexShrink: {sm: 0} }}
+        sx={{ width: {sm: drawer.width}, flexShrink: {sm: 0} }}
     >
         <Drawer
             variant="persistent"
-            open
+            open={drawer.isOpen}
             sx={{
                 display: {xs: 'block'},
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawer.width }
             }}
         >
             <Toolbar>
@@ -38,6 +48,9 @@ export const SideBar = ({drawerWidth= 240}) => {
                 >
                     {displayName}
                 </Typography>
+                <IconButton onClick={() => dispatch(onCloseDrawer())}>
+                    <ArrowBack/>
+                </IconButton>
             </Toolbar>
             <Divider />
             <List>
