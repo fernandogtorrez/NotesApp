@@ -34,7 +34,6 @@ const formValidations = {
     [(value) => value.length >= 1 , 'El nombre es obligatorio'],
     [(value) => value.length >= 6, "El nombre debe tener al menos 6 letras"]
   ],
-
 }
 
 export const RegisterPage = () => {
@@ -65,10 +64,7 @@ export const RegisterPage = () => {
   return (
     <AuthLayout title='Crear Cuenta'>
         <form onSubmit={onSubmit} className='animate__animate animate__animate__fadeIn'>
-        <Grid
-            item
-            xs={12}
-            sx={{mt: 2}}
+        <Grid item xs={12} sx={{mt: 2}}
           >
             <TextField
               label='Nombre Completo'
@@ -82,11 +78,7 @@ export const RegisterPage = () => {
               helperText={formSubmited && displayNameValid}
             />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sx={{mt: 2}}
-          >
+          <Grid item xs={12} sx={{mt: 2}}>
             <TextField
               label='Correo'
               type='email'
@@ -99,11 +91,7 @@ export const RegisterPage = () => {
               helperText={formSubmited && emailValid}
             />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sx={{mt: 2}}
-          >
+          <Grid item xs={12} sx={{mt: 2}}>
             <TextField
               label='Contraseña'
               type='password'
@@ -116,16 +104,8 @@ export const RegisterPage = () => {
               helperText={formSubmited && passwordValid}
             />
           </Grid>
-          <Grid
-            container
-            spacing={1}
-            sx={{mb: 2, mt: 1}}
-          >
-            <Grid
-              item
-              xs={12}
-              sx={{mt:2}}
-            >
+          <Grid container spacing={1} sx={{mb: 2, mt: 1}}>
+            <Grid item xs={12} sx={{mt:2}}>
               <Button
                 variant="contained"
                 fullWidth
@@ -136,16 +116,8 @@ export const RegisterPage = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid
-            container
-            direction='row'
-            justifyContent='end'
-          >
-            <Link
-              component={RouterLink}
-              color= 'inherit'
-              to='/auth/login'
-            >
+          <Grid container direction='row' justifyContent='end'>
+            <Link component={RouterLink} color= 'inherit' to='/auth/login'>
               Ya tengo una cuenta
             </Link>
           </Grid>

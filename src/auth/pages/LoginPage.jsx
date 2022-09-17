@@ -11,9 +11,8 @@ import { useMemo } from 'react'
 
 const initialForm = {
   email: '',
-    password: ''
+  password: ''
 }
-
 
 export const LoginPage = () => {
 
@@ -37,11 +36,7 @@ export const LoginPage = () => {
   return (
     <AuthLayout title='Login'>
         <form onSubmit={onSubmit} className='animate__animate animate__animate__fadeIn'>
-          <Grid
-            item
-            xs={12}
-            sx={{mt: 2}}
-          >
+          <Grid item xs={12} sx={{mt: 2}}>
             <TextField
               label='Correo'
               type='email'
@@ -52,11 +47,7 @@ export const LoginPage = () => {
               onChange={onInputChange}
             />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sx={{mt: 2}}
-          >
+          <Grid item xs={12} sx={{mt: 2}}>
             <TextField
               label='Contraseña'
               type='password'
@@ -67,16 +58,8 @@ export const LoginPage = () => {
               onChange={onInputChange}
             />
           </Grid>
-          <Grid
-            container
-            spacing={1}
-            sx={{mb: 2, mt: 1}}
-          >
-            <Grid
-              item
-              xs={12}
-              sx={{mt:2}}
-            >
+          <Grid container spacing={1} sx={{mb: 2, mt: 1}}>
+            <Grid item xs={12} sx={{mt:2}}>
               <Button
                 variant="contained"
                 fullWidth
@@ -86,11 +69,7 @@ export const LoginPage = () => {
                 <Typography sx={{ml: 1}}>Login</Typography>
               </Button>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{mt:2}}
-            >
+            <Grid item xs={12} sx={{mt:2}}>
               <Button
                 variant="contained"
                 fullWidth
@@ -102,16 +81,8 @@ export const LoginPage = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid
-            container
-            direction='row'
-            justifyContent='end'
-          >
-            <Link
-              component={RouterLink}
-              color= 'inherit'
-              to='/auth/register'
-            >
+          <Grid container direction='row' justifyContent='end'>
+            <Link component={RouterLink} color= 'inherit' to='/auth/register'>
               Crear una Cuenta
             </Link>
           </Grid>

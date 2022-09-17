@@ -22,6 +22,4 @@ export const AuthErrorAlert = () => {
         </Alert>
     </Snackbar>
   )
-
-
 }

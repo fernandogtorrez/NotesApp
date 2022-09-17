@@ -2,7 +2,6 @@ import { Grid, Typography } from '@mui/material'
 
 
 export const AuthLayout = ({children, title = ''}) => {
-
   return (
     <Grid
       container
@@ -20,10 +19,7 @@ export const AuthLayout = ({children, title = ''}) => {
         className='box-shadow'
         sx={{backgroundColor:'#fff', padding: 3, borderRadius: 2}}
       >
-        <Typography 
-          variant="h5"
-          sx={{mb:1}}
-        >
+        <Typography variant="h5" sx={{mb:1}}>
           {title}
         </Typography>
         {children}
